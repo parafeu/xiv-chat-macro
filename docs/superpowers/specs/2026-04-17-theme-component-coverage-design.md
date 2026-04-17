@@ -84,13 +84,16 @@ export default defineAppConfig({
 
     card: {
       slots: {
-        root: 'bg-default border border-default rounded-md',
+        // Keep bg-[var(--color-bg-panel)] — the gold-translucent panel is
+        // intentionally distinct from Nuxt UI's opaque --ui-bg. Border / text
+        // literals become tokens (same resolved color, less surface area).
+        root: 'bg-[var(--color-bg-panel)] border border-default rounded-md',
       },
     },
 
     input: {
       slots: {
-        base: 'bg-muted border border-default text-toned placeholder:text-dimmed',
+        base: 'bg-[var(--color-bg-input)] border border-default text-toned placeholder:text-dimmed',
       },
     },
 
@@ -132,6 +135,7 @@ export default defineAppConfig({
 
 **Design notes on the overrides:**
 
+- `card` / `input`: bg stays as `bg-[var(--color-bg-panel)]` / `bg-[var(--color-bg-input)]`. These are *in-page* surfaces that must remain translucent so the FF14 background gradient bleeds through (matching `GeneratorCard` and `MacroPreview`). Nuxt UI's `--ui-bg` and `--ui-bg-muted` are opaque and are reserved for *floating* surfaces (dropdown, slideover, toast) below. Only the border / text / placeholder literals simplify to tokens (`border-default`, `text-toned`, `text-dimmed`), which resolve to identical colors — zero visual diff.
 - `dropdownMenu.content`: the thin gold top-rule (`before:…gradient…`) mirrors the same decoration used on `GeneratorCard` and `MacroPreview`, so the dropdown reads as part of the same visual family. `ring-default` gives it the gold-translucent outline from our tokens.
 - `dropdownMenu.item`: the structural classes are kept; the color styling (text, hover halo, active halo) comes from the `active`/`color` compound variants already defined in the baked-in theme — `primary: 'gold'` makes them all render in our gold palette.
 - `dropdownMenu.separator`: token-backed bg so the color stays in sync.

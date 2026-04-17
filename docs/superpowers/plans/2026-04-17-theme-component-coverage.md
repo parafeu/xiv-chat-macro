@@ -115,14 +115,16 @@ including UDropdownMenu, USlideover, and UToaster."
 
 ---
 
-## Task 2: Simplify `card` and `input` overrides to lean on tokens
+## Task 2: Replace border / text literals with tokens in `card` and `input` (keep panel bg translucent)
+
+**Design note:** Our `--color-bg-panel` (gold-translucent, `rgba(201,169,98,0.04)`) and `--color-bg-input` (translucent black) are intentionally *not* the same surface as `--ui-bg` / `--ui-bg-muted` (opaque `--color-bg-deep` / `--color-bg-base`). In-page panels (card, input, `GeneratorCard`, `MacroPreview`) stay translucent so the FF14 background gradient bleeds through; floating surfaces (dropdown, slideover, toast) are opaque and pick up `bg-default`. So we keep the `bg-[var(--color-bg-*)]` literals on `card.slots.root` and `input.slots.base`, and only swap the border / text / placeholder literals for their token-backed equivalents (`border-default`, `text-toned`, `placeholder:text-dimmed`) — those resolve to the exact same colors via Task 1's mapping, so it's a zero-visual-diff simplification.
 
 **Files:**
 - Modify: `app.config.ts`
 
 - [ ] **Step 1: Read `app.config.ts` to confirm the current state**
 
-The file currently uses literal utilities like `bg-[var(--color-bg-panel)]` in the `card.slots.root` and `input.slots.base`. After Task 1 the same surfaces are reachable through `bg-default` / `bg-muted` / `text-toned` / `text-dimmed`, so we simplify.
+Confirm `card.slots.root` still uses `bg-[var(--color-bg-panel)]` + `border border-[var(--color-border)]`, and `input.slots.base` uses `bg-[var(--color-bg-input)]` + `border border-[var(--color-border)]` + `text-[var(--color-text-body)]` + `placeholder:text-[var(--color-text-dim)]`.
 
 - [ ] **Step 2: Replace the `card` and `input` overrides**
 
@@ -142,12 +144,12 @@ export default defineAppConfig({
     },
     card: {
       slots: {
-        root: 'bg-default border border-default rounded-md',
+        root: 'bg-[var(--color-bg-panel)] border border-default rounded-md',
       },
     },
     input: {
       slots: {
-        base: 'bg-muted border border-default text-toned placeholder:text-dimmed',
+        base: 'bg-[var(--color-bg-input)] border border-default text-toned placeholder:text-dimmed',
       },
     },
   },
@@ -156,23 +158,22 @@ export default defineAppConfig({
 
 - [ ] **Step 3: Smoke-check that nothing regressed**
 
-With `npm run dev` still running, hard-reload the browser. Neither `UCard` nor `UInput` is instantiated anywhere in v1, so visually there's nothing to see. We verify that:
-
-- `npm run dev` has not printed a Tailwind / tv() warning about unknown utilities.
-- The home page, `/example` page, and settings page all still render (server responds 200, no hydration error in the console).
-
-Optional sanity check: create a scratch component that renders `<UCard><UInput placeholder="test" /></UCard>` on the home page, verify the card panel is gold-translucent and the input has our dark-translucent bg, then revert the scratch.
+Browser smoke check is the human's job — skip it. Run `npx nuxi prepare` and confirm no warnings. Confirm via `git grep 'bg-\[var(--color-bg-panel)\]' app.config.ts` that the translucent bg literal is still present on `card.slots.root` (it must be — this task is the one that preserves it).
 
 - [ ] **Step 4: Commit**
 
 ```bash
 git add app.config.ts
-git commit -m "refactor(theme): use semantic utilities for card and input
+git commit -m "refactor(theme): use tokens for borders and text on card/input
 
-Now that --ui-* tokens point at the FF14 palette, card and input
-can rely on bg-default / bg-muted / text-toned / text-dimmed instead
-of hand-rolled bg-[var(--color-bg-panel)] classes. Same visual, less
-surface area."
+Keeps the bg-[var(--color-bg-panel)] / bg-[var(--color-bg-input)]
+literals intact — those translucent surfaces are intentionally distinct
+from Nuxt UI's opaque --ui-bg / --ui-bg-muted, which are used for
+floating components (dropdown, slideover, toast) in later tasks.
+
+Only the border and text / placeholder literals are swapped for their
+token-backed equivalents (border-default, text-toned, text-dimmed),
+which Task 1's --ui-* mapping resolves to the exact same colors."
 ```
 
 ---
