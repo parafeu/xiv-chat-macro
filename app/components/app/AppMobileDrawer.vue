@@ -15,7 +15,7 @@ function close() {
 </script>
 
 <template>
-  <USlideover v-model:open="open" side="left" :ui="{ content: 'max-w-64 bg-[var(--color-bg-base)]' }">
+  <USlideover v-model:open="open" side="left" :ui="{ content: 'max-w-64' }">
     <template #content>
       <div class="flex h-full flex-col">
         <div class="flex items-center justify-between px-4 py-3 border-b border-[var(--color-border)]">

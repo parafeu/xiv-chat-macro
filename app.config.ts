@@ -36,5 +36,11 @@ export default defineAppConfig({
           + 'data-disabled:cursor-not-allowed data-disabled:opacity-60',
       },
     },
+    slideover: {
+      slots: {
+        content: 'bg-default ring-1 ring-default',
+        overlay: 'bg-black/60 backdrop-blur-sm',
+      },
+    },
   },
 })
