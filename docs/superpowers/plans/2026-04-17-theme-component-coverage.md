@@ -223,12 +223,12 @@ export default defineAppConfig({
     },
     card: {
       slots: {
-        root: 'bg-default border border-default rounded-md',
+        root: 'bg-[var(--color-bg-panel)] border border-default rounded-md',
       },
     },
     input: {
       slots: {
-        base: 'bg-muted border border-default text-toned placeholder:text-dimmed',
+        base: 'bg-[var(--color-bg-input)] border border-default text-toned placeholder:text-dimmed',
       },
     },
     dropdownMenu: {
