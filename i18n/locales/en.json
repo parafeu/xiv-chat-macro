@@ -1,0 +1,57 @@
+{
+  "app": {
+    "brand": "Macro Forge",
+    "subtitle": "Chat macro generator",
+    "settings": "Settings",
+    "languageSwitcher": "Language"
+  },
+  "nav": {
+    "home": "Home",
+    "collapseSidebar": "Collapse sidebar",
+    "expandSidebar": "Expand sidebar",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "home": {
+    "title": "Generators",
+    "description": "Pick a forge to craft your chat macros."
+  },
+  "generator": {
+    "label": "GENERATOR",
+    "comingSoon": "Coming soon"
+  },
+  "preview": {
+    "label": "Live preview",
+    "status": {
+      "valid": "Valid for FF14",
+      "invalid": "Exceeds macro limits",
+      "lines": "{current} / 15 lines",
+      "chars": "max {max} / 180 chars"
+    }
+  },
+  "macro": {
+    "copy": "Copy macro",
+    "copied": "Copied to clipboard"
+  },
+  "error": {
+    "notFound": {
+      "title": "Page not found",
+      "description": "The generator you seek is not in the registry.",
+      "action": "Back to home"
+    },
+    "generic": {
+      "title": "Something went wrong",
+      "action": "Back to home"
+    }
+  },
+  "badges": {
+    "new": "NEW",
+    "beta": "BETA"
+  },
+  "generators": {
+    "example": {
+      "title": "Example",
+      "description": "Placeholder generator — scaffold only."
+    }
+  }
+}

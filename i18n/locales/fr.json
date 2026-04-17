@@ -1,0 +1,57 @@
+{
+  "app": {
+    "brand": "Macro Forge",
+    "subtitle": "Générateur de macros de chat",
+    "settings": "Réglages",
+    "languageSwitcher": "Langue"
+  },
+  "nav": {
+    "home": "Accueil",
+    "collapseSidebar": "Replier la barre latérale",
+    "expandSidebar": "Déplier la barre latérale",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu"
+  },
+  "home": {
+    "title": "Générateurs",
+    "description": "Choisis une forge pour créer tes macros de chat."
+  },
+  "generator": {
+    "label": "GÉNÉRATEUR",
+    "comingSoon": "Bientôt disponible"
+  },
+  "preview": {
+    "label": "Aperçu live",
+    "status": {
+      "valid": "Valide pour FF14",
+      "invalid": "Dépasse les limites macro",
+      "lines": "{current} / 15 lignes",
+      "chars": "max {max} / 180 caractères"
+    }
+  },
+  "macro": {
+    "copy": "Copier la macro",
+    "copied": "Copié dans le presse-papier"
+  },
+  "error": {
+    "notFound": {
+      "title": "Page introuvable",
+      "description": "Le générateur demandé n'est pas dans le registre.",
+      "action": "Retour à l'accueil"
+    },
+    "generic": {
+      "title": "Un problème est survenu",
+      "action": "Retour à l'accueil"
+    }
+  },
+  "badges": {
+    "new": "NOUVEAU",
+    "beta": "BÊTA"
+  },
+  "generators": {
+    "example": {
+      "title": "Exemple",
+      "description": "Générateur de démo — structure seule."
+    }
+  }
+}
