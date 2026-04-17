@@ -26,5 +26,9 @@
   },
   "overrides": {
     "unimport": "5.6.0"
+  },
+  "devDependencies": {
+    "@iconify-json/lucide": "^1.2.102",
+    "@iconify-json/ph": "^1.2.2"
   }
 }

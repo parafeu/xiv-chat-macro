@@ -10,7 +10,12 @@ export default defineNuxtConfig({
     '@nuxt/fonts',
     '@nuxtjs/i18n',
     '@pinia/nuxt',
+    'pinia-plugin-persistedstate/nuxt',
     '@vueuse/nuxt',
+  ],
+
+  components: [
+    { path: '~/components', pathPrefix: false },
   ],
 
   css: ['~/assets/css/main.css'],
@@ -42,10 +47,6 @@ export default defineNuxtConfig({
     bundle: {
       optimizeTranslationDirective: false,
     },
-  },
-
-  pinia: {
-    storesDirs: ['./app/stores/**'],
   },
 
   app: {
