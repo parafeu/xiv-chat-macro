@@ -1,6 +1,11 @@
 @import "tailwindcss";
 @import "@nuxt/ui";
 
+/* Tailwind v4 only scans files under app/** by default (via @nuxt/ui's    */
+/* @source directive). Slot-override utilities defined in app.config.ts    */
+/* (at the repo root) are invisible without this — include it explicitly.  */
+@source "../../../app.config.ts";
+
 /* --- Custom gold scale for @nuxt/ui's `primary: 'gold'` config. -------- */
 /* Generated manually from the brand gold #c9a962, kept tight at midpoint. */
 @theme static {
