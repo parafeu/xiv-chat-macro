@@ -46,6 +46,37 @@
   --color-danger:  #d87d7d;
 }
 
+/* --- Nuxt UI v3 semantic token overrides. ------------------------------ */
+/* The `.dark` class is applied in nuxt.config.ts (htmlAttrs + colorMode). */
+/* Mapping these tokens to our FF14 palette re-themes every `@nuxt/ui`    */
+/* component that uses token-backed utilities (bg-default, ring-default,  */
+/* text-muted, …) — no per-component override required for 80% of cases. */
+.dark {
+  /* Surfaces */
+  --ui-bg:           var(--color-bg-deep);
+  --ui-bg-muted:     var(--color-bg-base);
+  --ui-bg-elevated:  rgba(201, 169, 98, 0.08);
+  --ui-bg-accented:  rgba(201, 169, 98, 0.14);
+  --ui-bg-inverted:  var(--color-text-primary);
+
+  /* Borders / rings */
+  --ui-border:           var(--color-border);
+  --ui-border-muted:     rgba(201, 169, 98, 0.10);
+  --ui-border-accented:  var(--color-border-strong);
+  --ui-border-inverted:  var(--color-gold);
+
+  /* Text */
+  --ui-text-dimmed:       var(--color-text-dim);
+  --ui-text-muted:        var(--color-text-muted);
+  --ui-text-toned:        var(--color-text-body);
+  --ui-text:              var(--color-text-body);
+  --ui-text-highlighted:  var(--color-text-primary);
+  --ui-text-inverted:     var(--color-bg-base);
+
+  /* Global radius aligned with ornament primitives (4–8px) */
+  --ui-radius: 0.375rem;
+}
+
 html, body {
   min-height: 100%;
   background: linear-gradient(180deg, var(--color-bg-base) 0%, var(--color-bg-deep) 100%);
