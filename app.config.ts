@@ -42,5 +42,12 @@ export default defineAppConfig({
         overlay: 'bg-black/60 backdrop-blur-sm',
       },
     },
+    toast: {
+      slots: {
+        root: 'bg-default ring-1 ring-default shadow-xl shadow-black/40 rounded-md',
+        title: 'text-highlighted font-medium',
+        description: 'text-muted',
+      },
+    },
   },
 })
