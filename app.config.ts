@@ -11,12 +11,12 @@ export default defineAppConfig({
     },
     card: {
       slots: {
-        root: 'bg-[var(--color-bg-panel)] border border-[var(--color-border)] rounded-md',
+        root: 'bg-default border border-default rounded-md',
       },
     },
     input: {
       slots: {
-        base: 'bg-[var(--color-bg-input)] border border-[var(--color-border)] text-[var(--color-text-body)] placeholder:text-[var(--color-text-dim)]',
+        base: 'bg-muted border border-default text-toned placeholder:text-dimmed',
       },
     },
   },
