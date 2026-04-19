@@ -1,0 +1,48 @@
+name: Deploy to Cloudflare Pages
+
+on:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    steps:
+      - name: Checkout public source
+        uses: actions/checkout@v4
+
+      - name: Fetch private game assets
+        env:
+          GH_TOKEN: ${{ secrets.ASSETS_REPO_TOKEN }}
+        run: |
+          # ff14FontWidths.json + chat-preview-bg.png live in a separate
+          # private repo so they never touch this public source tree. The
+          # ASSETS_REPO_TOKEN secret is a fine-grained PAT with read access.
+          gh repo clone "${{ vars.ASSETS_REPO }}" /tmp/assets
+          cp /tmp/assets/ff14FontWidths.json app/constants/ff14FontWidths.json
+          cp /tmp/assets/chat-preview-bg.png public/chat-preview-bg.png
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Generate static site
+        env:
+          NUXT_PUBLIC_CHAT_PREVIEW_BG: /chat-preview-bg.png
+        run: npm run generate
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy .output/public --project-name=${{ vars.CF_PROJECT_NAME }} --branch=master
