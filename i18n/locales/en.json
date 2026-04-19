@@ -5,6 +5,9 @@
     "settings": "Settings",
     "languageSwitcher": "Language"
   },
+  "footer": {
+    "disclaimer": "Fan project · Not affiliated with Square Enix"
+  },
   "nav": {
     "home": "Home",
     "openMenu": "Open menu",
