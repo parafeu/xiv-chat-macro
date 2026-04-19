@@ -12,7 +12,7 @@
   },
   "home": {
     "title": "Générateurs",
-    "description": "Choisis une forge pour créer tes macros de chat."
+    "description": "Choisis un générateur pour créer tes macros de chat."
   },
   "generator": {
     "label": "GÉNÉRATEUR",

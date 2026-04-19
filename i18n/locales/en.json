@@ -12,7 +12,7 @@
   },
   "home": {
     "title": "Generators",
-    "description": "Pick a forge to craft your chat macros."
+    "description": "Pick a generator to craft your chat macros."
   },
   "generator": {
     "label": "GENERATOR",
