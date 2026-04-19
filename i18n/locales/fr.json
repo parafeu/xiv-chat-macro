@@ -7,8 +7,6 @@
   },
   "nav": {
     "home": "Accueil",
-    "collapseSidebar": "Replier la barre latérale",
-    "expandSidebar": "Déplier la barre latérale",
     "openMenu": "Ouvrir le menu",
     "closeMenu": "Fermer le menu"
   },
@@ -22,6 +20,7 @@
   },
   "preview": {
     "label": "Aperçu live",
+    "empty": "(aucun message)",
     "status": {
       "valid": "Valide pour FF14",
       "invalid": "Dépasse les limites macro",
@@ -30,8 +29,10 @@
     }
   },
   "macro": {
+    "title": "Macro",
     "copy": "Copier la macro",
-    "copied": "Copié dans le presse-papier"
+    "copied": "Copié dans le presse-papier",
+    "copyFailed": "Échec de la copie — vérifie les permissions"
   },
   "error": {
     "notFound": {
@@ -48,10 +49,42 @@
     "new": "NOUVEAU",
     "beta": "BÊTA"
   },
+  "settings": {
+    "identity": {
+      "title": "Identité",
+      "description": "Personnage de démo affiché dans l'aperçu du chat.",
+      "playerName": "Nom du personnage",
+      "server": "Serveur"
+    },
+    "preview": {
+      "title": "Aperçu",
+      "description": "Réglages visuels par défaut pour l'aperçu du chat.",
+      "chatColor": "Couleur du message"
+    }
+  },
   "generators": {
-    "example": {
-      "title": "Exemple",
-      "description": "Générateur de démo — structure seule."
+    "alertBox": {
+      "title": "Boîte d'alerte",
+      "description": "Encadre un message court dans une boîte ASCII décorative.",
+      "text": "Message",
+      "placeholder": "Rassemblement à 20h00",
+      "alignment": "Alignement",
+      "align": {
+        "left": "Aligner à gauche",
+        "center": "Centrer",
+        "right": "Aligner à droite"
+      },
+      "decoration": "Décoration",
+      "decorations": {
+        "plain": "Cadre simple",
+        "kaomoji": "Kaomoji"
+      },
+      "extraWidth": "Largeur supplémentaire",
+      "extraHeight": "Hauteur supplémentaire",
+      "drift": {
+        "title": "Léger décalage d'alignement",
+        "description": "La police du jeu (AXIS_12) utilise des largeurs multiples de 3 pour les espaces et de 12 pour les caractères de cadre. Quand la largeur de ton contenu n'est pas multiple de 3, un décalage jusqu'à ~⅓ d'espace est mathématiquement inévitable sans insérer de caractère de remplissage visible. Le cadre reste le plus droit possible."
+      }
     }
   }
 }

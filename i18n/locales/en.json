@@ -7,8 +7,6 @@
   },
   "nav": {
     "home": "Home",
-    "collapseSidebar": "Collapse sidebar",
-    "expandSidebar": "Expand sidebar",
     "openMenu": "Open menu",
     "closeMenu": "Close menu"
   },
@@ -22,6 +20,7 @@
   },
   "preview": {
     "label": "Live preview",
+    "empty": "(no messages)",
     "status": {
       "valid": "Valid for FF14",
       "invalid": "Exceeds macro limits",
@@ -30,8 +29,10 @@
     }
   },
   "macro": {
+    "title": "Macro",
     "copy": "Copy macro",
-    "copied": "Copied to clipboard"
+    "copied": "Copied to clipboard",
+    "copyFailed": "Couldn't copy — check clipboard permissions"
   },
   "error": {
     "notFound": {
@@ -48,10 +49,42 @@
     "new": "NEW",
     "beta": "BETA"
   },
+  "settings": {
+    "identity": {
+      "title": "Identity",
+      "description": "Demo character shown inside the chat preview.",
+      "playerName": "Character name",
+      "server": "World"
+    },
+    "preview": {
+      "title": "Preview",
+      "description": "Visual defaults for the chat preview.",
+      "chatColor": "Message color"
+    }
+  },
   "generators": {
-    "example": {
-      "title": "Example",
-      "description": "Placeholder generator — scaffold only."
+    "alertBox": {
+      "title": "Alert box",
+      "description": "Wrap a short message in a decorative ASCII box.",
+      "text": "Message",
+      "placeholder": "Assembly at 20:00",
+      "alignment": "Alignment",
+      "align": {
+        "left": "Align left",
+        "center": "Align center",
+        "right": "Align right"
+      },
+      "decoration": "Decoration",
+      "decorations": {
+        "plain": "Plain box",
+        "kaomoji": "Kaomoji"
+      },
+      "extraWidth": "Extra width",
+      "extraHeight": "Extra height",
+      "drift": {
+        "title": "Minor alignment drift",
+        "description": "The in-game font (AXIS_12) only offers widths that are multiples of 3 for spaces and 12 for frame characters. When your content width isn't a multiple of 3, up to ~⅓ of a space of misalignment is mathematically unavoidable without inserting visible filler characters. The box stays as straight as possible."
+      }
     }
   }
 }
