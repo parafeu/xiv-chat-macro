@@ -1,15 +1,23 @@
 import { defineStore } from 'pinia'
+import { FF14_DEFAULT_CHAT_COLOR_KEY, type Ff14ColorKey } from '~/constants/ff14Palette'
 
 export const useSettingsStore = defineStore('settings', {
   state: () => ({
-    sidebarCollapsed: false as boolean,
+    /** Demo character identity shown inside the ChatPreview. */
+    playerName: 'Parafeu Midia' as string,
+    server: 'Louisoix' as string,
+    /** Default chat message color — stored as an FF14 palette key (e.g. "r4c6"). */
+    chatColor: FF14_DEFAULT_CHAT_COLOR_KEY as Ff14ColorKey,
   }),
   actions: {
-    toggleSidebar() {
-      this.sidebarCollapsed = !this.sidebarCollapsed
+    setPlayerName(value: string) {
+      this.playerName = value
     },
-    setSidebarCollapsed(value: boolean) {
-      this.sidebarCollapsed = value
+    setServer(value: string) {
+      this.server = value
+    },
+    setChatColor(key: Ff14ColorKey) {
+      this.chatColor = key
     },
   },
   persist: true,

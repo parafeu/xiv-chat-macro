@@ -20,6 +20,16 @@ export default defineNuxtConfig({
 
   css: ['~/assets/css/main.css'],
 
+  runtimeConfig: {
+    public: {
+      // URL of the in-game screenshot used as the ChatPreview backdrop.
+      // Drop your own screenshot under public/ (e.g. public/chat-preview-bg.png)
+      // and set NUXT_PUBLIC_CHAT_PREVIEW_BG=/chat-preview-bg.png in .env.
+      // Empty string = no background (fallback placeholder is rendered).
+      chatPreviewBg: '',
+    },
+  },
+
   colorMode: {
     preference: 'dark',
     fallback: 'dark',
@@ -44,9 +54,6 @@ export default defineNuxtConfig({
       cookieKey: 'i18n_redirected',
       redirectOn: 'root',
     },
-    bundle: {
-      optimizeTranslationDirective: false,
-    },
   },
 
   app: {
@@ -57,6 +64,7 @@ export default defineNuxtConfig({
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       ],
+      
     },
   },
 })
