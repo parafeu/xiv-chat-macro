@@ -9,6 +9,8 @@ function isActive(slug: string) {
   return current === slug
 }
 
+const isHome = computed(() => route.path === localePath('/'))
+
 function close() {
   open.value = false
 }
@@ -18,14 +20,14 @@ function close() {
   <USlideover v-model:open="open" side="left" :ui="{ content: 'max-w-64' }">
     <template #content>
       <div class="flex h-full flex-col">
-        <div class="flex items-center justify-between px-4 py-3 border-b border-[var(--color-border)]">
+        <div class="flex items-center justify-between px-4 py-3 border-b border-default">
           <div class="flex items-baseline gap-2">
-            <span class="text-[var(--color-gold)]">⚜</span>
+            <img src="/logo.png" alt="" aria-hidden="true" class="h-6 w-auto shrink-0">
             <span class="font-[family-name:var(--font-display)] text-lg">{{ $t('app.brand') }}</span>
           </div>
           <button
             type="button"
-            class="rounded p-1 text-[var(--color-text-dim)] hover:text-[var(--color-gold)]"
+            class="rounded p-1 text-dimmed hover:text-gold"
             :aria-label="$t('nav.closeMenu')"
             @click="close()"
           >
@@ -34,12 +36,24 @@ function close() {
         </div>
         <nav class="flex-1 overflow-y-auto px-2 py-3 space-y-0.5">
           <NuxtLink
+            :to="localePath('/')"
+            class="flex items-center gap-2 rounded px-3 py-2 text-sm text-muted hover:text-gold-soft hover:bg-panel"
+            :class="isHome
+              ? 'bg-gold/10 text-gold-soft'
+              : ''"
+            :aria-current="isHome ? 'page' : undefined"
+            @click="close()"
+          >
+            <Icon name="i-lucide-home" class="size-4 shrink-0" />
+            {{ $t('nav.home') }}
+          </NuxtLink>
+          <NuxtLink
             v-for="g in generators"
             :key="g.id"
             :to="localePath(`/${g.slug}`)"
-            class="flex items-center gap-2 rounded px-3 py-2 text-sm text-[var(--color-text-muted)] hover:text-[var(--color-gold-soft)] hover:bg-[var(--color-bg-panel)]"
+            class="flex items-center gap-2 rounded px-3 py-2 text-sm text-muted hover:text-gold-soft hover:bg-panel"
             :class="isActive(g.slug)
-              ? 'bg-[var(--color-gold)]/10 text-[var(--color-gold-soft)]'
+              ? 'bg-gold/10 text-gold-soft'
               : ''"
             :aria-current="isActive(g.slug) ? 'page' : undefined"
             @click="close()"
@@ -48,10 +62,10 @@ function close() {
             {{ $t(g.titleKey) }}
           </NuxtLink>
         </nav>
-        <div class="border-t border-[var(--color-border)] px-2 py-3">
+        <div class="border-t border-default px-2 py-3">
           <NuxtLink
             :to="localePath('/settings')"
-            class="flex items-center gap-2 rounded px-3 py-2 text-xs text-[var(--color-text-dim)] hover:text-[var(--color-gold)]"
+            class="flex items-center gap-2 rounded px-3 py-2 text-xs text-dimmed hover:text-gold"
             @click="close()"
           >
             <Icon name="i-lucide-settings" class="size-4 shrink-0" />

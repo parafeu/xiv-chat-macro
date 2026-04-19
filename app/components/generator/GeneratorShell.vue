@@ -11,10 +11,10 @@ defineProps<Props>()
   <div>
     <header class="mb-6">
       <SectionLabel>{{ $t('generator.label') }}</SectionLabel>
-      <h1 class="font-[family-name:var(--font-display)] text-3xl text-[var(--color-text-primary)]">
+      <h1 class="text-3xl text-highlighted">
         {{ $t(generator.titleKey) }}
       </h1>
-      <p class="mt-1 text-sm text-[var(--color-text-muted)]">
+      <p class="mt-1 text-sm text-muted">
         {{ $t(generator.descriptionKey) }}
       </p>
     </header>

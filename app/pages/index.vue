@@ -11,10 +11,10 @@ useHead({
 <template>
   <div>
     <SectionLabel>{{ $t('app.brand') }}</SectionLabel>
-    <h1 class="font-[family-name:var(--font-display)] text-3xl md:text-4xl text-[var(--color-text-primary)]">
+    <h1 class="text-3xl md:text-4xl text-highlighted">
       {{ $t('home.title') }}
     </h1>
-    <p class="mt-2 text-sm text-[var(--color-text-muted)] max-w-xl">
+    <p class="mt-2 text-sm text-muted max-w-xl">
       {{ $t('home.description') }}
     </p>
     <div class="my-6">

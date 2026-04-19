@@ -2,9 +2,9 @@
 @import "@nuxt/ui";
 
 /* Tailwind v4 only scans files under app/** by default (via @nuxt/ui's    */
-/* @source directive). Slot-override utilities defined in app.config.ts    */
-/* (at the repo root) are invisible without this — include it explicitly.  */
-@source "../../../app.config.ts";
+/* @source directive). app/app.config.ts IS under app/** so it's covered,  */
+/* but keep this explicit for clarity.                                     */
+@source "../../app.config.ts";
 
 /* --- Custom gold scale for @nuxt/ui's `primary: 'gold'` config. -------- */
 /* Generated manually from the brand gold #c9a962, kept tight at midpoint. */
@@ -24,31 +24,81 @@
   --font-display: "Cormorant Garamond", ui-serif, Georgia, serif;
   --font-sans:    "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-mono:    "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  /* In-game chat font — used only inside ChatPreview.
+     Overpass is the closest free match to the FF14 UI font (Jupiter).
+     It's proportional, same as Jupiter — so ASCII alert-boxes may
+     render slightly off here, just as they do in-game. The character-
+     accurate layout lives in the Macro box (monospace) alongside. */
+  --font-chat:    "Overpass", ui-sans-serif, system-ui, sans-serif;
+
+  /* FFXIV in-game chat color-picker palette — 8 columns × 7 rows, 56 swatches.
+     Hex values sampled pixel-by-pixel from the game's own palette grid.
+     Named by position (row, col) since the game assigns no other label.
+     Registered as Tailwind tokens so utilities like `text-ff14-r2c6`,
+     `bg-ff14-r4c6`, `border-ff14-r5c3`, … are generated automatically. */
+  --color-ff14-r1c1: #FFFFFF;  --color-ff14-r1c2: #FFBDBD;  --color-ff14-r1c3: #FFDEC7;  --color-ff14-r1c4: #FFF7B0;
+  --color-ff14-r1c5: #E8FFE0;  --color-ff14-r1c6: #E5FFFC;  --color-ff14-r1c7: #9CCFF2;  --color-ff14-r1c8: #FFDBFF;
+
+  --color-ff14-r2c1: #F7F7F7;  --color-ff14-r2c2: #FF0000;  --color-ff14-r2c3: #FF7F00;  --color-ff14-r2c4: #FFFF00;
+  --color-ff14-r2c5: #00FF00;  --color-ff14-r2c6: #00FFFF;  --color-ff14-r2c7: #0000FF;  --color-ff14-r2c8: #FF00FF;
+
+  --color-ff14-r3c1: #DEDEDE;  --color-ff14-r3c2: #FF4A4A;  --color-ff14-r3c3: #FFA666;  --color-ff14-r3c4: #FFFFB0;
+  --color-ff14-r3c5: #7FFF00;  --color-ff14-r3c6: #BAFFF0;  --color-ff14-r3c7: #007FFF;  --color-ff14-r3c8: #E05E8F;
+
+  --color-ff14-r4c1: #D6D6D6;  --color-ff14-r4c2: #FF7D7D;  --color-ff14-r4c3: #FFCCAB;  --color-ff14-r4c4: #FFDE73;
+  --color-ff14-r4c5: #7FF75E;  --color-ff14-r4c6: #66E5FF;  --color-ff14-r4c7: #94BFFF;  --color-ff14-r4c8: #FF8AC4;
+
+  --color-ff14-r5c1: #CCCCCC;  --color-ff14-r5c2: #FFBFBF;  --color-ff14-r5c3: #FF6600;  --color-ff14-r5c4: #F0C76B;
+  --color-ff14-r5c5: #D4FF7D;  --color-ff14-r5c6: #ABDBE5;  --color-ff14-r5c7: #7F7FFF;  --color-ff14-r5c8: #FFB8DE;
+
+  --color-ff14-r6c1: #BDBDBD;  --color-ff14-r6c2: #D6BFBF;  --color-ff14-r6c3: #D6666B;  --color-ff14-r6c4: #CCCC66;
+  --color-ff14-r6c5: #ABD647;  --color-ff14-r6c6: #B0E5E5;  --color-ff14-r6c7: #B28AFF;  --color-ff14-r6c8: #DEA6BA;
+
+  --color-ff14-r7c1: #A6A6A6;  --color-ff14-r7c2: #C4A1A1;  --color-ff14-r7c3: #D6BDAB;  --color-ff14-r7c4: #C7BF9E;
+  --color-ff14-r7c5: #38E5B2;  --color-ff14-r7c6: #3BE5E5;  --color-ff14-r7c7: #DEBFF7;  --color-ff14-r7c8: #DE87F2;
+
+  /* Active chat message color. Defined in @theme so Tailwind generates
+     `text-chat` / `bg-chat` utilities. The value is an alias — swap it
+     at any scope (e.g. `.channel-say { --color-chat: … }`) and the
+     utility picks up the new color at runtime. */
+  --color-chat: var(--color-ff14-r4c6);
+
+  /* Brand gold — semantic aliases. Tailwind generates text-gold, text-gold-soft,
+     bg-gold-bright, border-gold-dim, ring-gold/40 … automatically. */
+  --color-gold:        #c9a962;
+  --color-gold-soft:   #d4b877;
+  --color-gold-bright: #e8d9a8;
+  --color-gold-dim:    #8b7355;
+
+  /* Surface accents that don't map cleanly onto Nuxt UI's semantic tokens.
+     `bg-panel` = faint gold-tinted backdrop for card surfaces.
+     `bg-well`  = inset dark area for inputs and code blocks. */
+  --color-panel: rgba(201, 169, 98, 0.04);
+  --color-well:  rgba(0, 0, 0, 0.25);
+
+  /* Border colors — also the source for --ui-border (via .dark below). */
+  --color-border:        rgba(201, 169, 98, 0.18);
+  --color-border-strong: rgba(201, 169, 98, 0.30);
+
+  /* Semantic status colors — if a component needs them as Tailwind classes
+     (text-success etc.), they're available here. */
+  --color-success: #7dd87d;
+  --color-warning: #d4b877;
+  --color-danger:  #d87d7d;
 }
 
-/* --- Semantic tokens used across the app. ------------------------------ */
+/* --- Semantic tokens consumed by Nuxt UI's --ui-* layer. --------------- */
+/* Accessed through Nuxt UI utilities (text-muted, bg-default, text-highlighted
+   …), so they don't need to be registered as Tailwind colors. */
 :root {
   --color-bg-base: #0b0e16;
   --color-bg-deep: #121624;
-  --color-bg-panel: rgba(201, 169, 98, 0.04);
-  --color-bg-input: rgba(0, 0, 0, 0.25);
-
-  --color-gold:         #c9a962;
-  --color-gold-soft:    #d4b877;
-  --color-gold-bright:  #e8d9a8;
-  --color-gold-dim:     #8b7355;
-
-  --color-border:        rgba(201, 169, 98, 0.18);
-  --color-border-strong: rgba(201, 169, 98, 0.30);
 
   --color-text-primary: #f5f2e8;
   --color-text-body:    #e8e6df;
   --color-text-muted:   #a8a69c;
   --color-text-dim:     #6b6a63;
-
-  --color-success: #7dd87d;
-  --color-warning: #d4b877;
-  --color-danger:  #d87d7d;
 }
 
 /* --- Nuxt UI v3 semantic token overrides. ------------------------------ */
@@ -91,10 +141,9 @@ html, body {
   font-feature-settings: "cv11", "ss01";
 }
 
-/* Default display font for headings. Individual components can opt in via
-   the `font-display` Tailwind utility generated from --font-display. */
+/* Headings inherit the sans font. The serif display font is reserved for the
+   app brand (AppHeader, AppMobileDrawer). */
 h1, h2, h3 {
-  font-family: var(--font-display);
   color: var(--color-text-primary);
   letter-spacing: -0.01em;
 }

@@ -12,7 +12,7 @@ const glyph = computed(() => props.variant === 'full'
   <div
     role="separator"
     aria-hidden="true"
-    class="text-center text-[10px] tracking-[0.25em] text-[var(--color-gold)] select-none"
+    class="text-center text-[10px] tracking-[0.25em] text-gold select-none"
   >
     {{ glyph }}
   </div>
