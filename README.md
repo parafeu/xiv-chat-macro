@@ -8,6 +8,10 @@
   A fan-made generator for FFXIV chat macros that align pixel-perfectly in-game.
 </p>
 
+<p align="center">
+  <a href="https://xiv-chat-macro.parafeu.dev"><b>→ Open the app</b></a>
+</p>
+
 ---
 
 ## What it does
