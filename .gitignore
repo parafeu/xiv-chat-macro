@@ -17,9 +17,18 @@ logs
 .DS_Store
 .fleet
 .idea
+.playwright-mcp/
+__pycache__/
+
+# Debug screenshots captured at repo root during dev sessions
+/*.png
 
 # Local env files
 .env
 .env.*
 !.env.example
 .superpowers/
+
+# Licensed game assets — must not be committed
+public/chat-preview-bg.*
+app/constants/ff14FontWidths.json
